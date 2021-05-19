@@ -2,7 +2,7 @@
 import client from '../lib/client.js';
 // import our seed data:
 import users from './users.js';
-import dishes from './dishes.js';
+import favorites from './favorites.js';
 
 run();
 
@@ -24,12 +24,12 @@ async function run() {
     const user = data[0].rows[0];
 
     await Promise.all(
-      dishes.map(dish => {
+      favorites.map(favorite => {
         return client.query(`
-        INSERT INTO dishes (name, thumbnail_url, num_servings,user_id)
+        INSERT INTO favorites (name, thumbnail_url, num_servings,user_id)
         VALUES ($1, $2, $3, $4)
         `,
-        [dish.name, dish.thumbnail_url, dish.num_servings, user.id]);
+        [favorite.name, favorite.thumbnail_url, favorite.num_servings, user.id]);
       })
     );
     

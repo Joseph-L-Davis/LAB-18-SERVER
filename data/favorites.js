@@ -1,5 +1,5 @@
 // example seed data
-const dishes = [
+const favorites = [
   {
     'servings_noun_singular': 'serving',
     'thumbnail_url': 'https://img.buzzfeed.com/tasty-app-user-assets-prod-us-east-1/recipes/89513629797746a39d5e6d688a87d7d9.png',
@@ -717,4 +717,4 @@ const dishes = [
   }
 
 ];
-export default dishes;
+export default favorites;

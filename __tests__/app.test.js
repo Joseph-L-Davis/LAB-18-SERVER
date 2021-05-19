@@ -5,13 +5,21 @@ import { execSync } from 'child_process';
 
 const request = supertest(app);
 
+let favoriteDish = {
+  name: 'fake dish',
+  id: expect.any(Number),
+  thumbnailUrl: 'string',
+  numServings: '2',
+  userId: 1
+};
+
 describe('API Routes', () => {
 
   afterAll(async () => {
     return client.end();
   });
 
-  describe('/api/cats', () => {
+  describe('/api/dishes', () => {
     let user;
 
     beforeAll(async () => {
@@ -28,18 +36,26 @@ describe('API Routes', () => {
       expect(response.status).toBe(200);
 
       user = response.body;
-    });
+    }); 
 
     // append the token to your requests:
     //  .set('Authorization', user.token);
     
-    it('VERB to /api/route [with context]', async () => {
-      
+    it('POST to /api/favorites', async () => {
+     
+      const response = await request
+        .post('/api/favorites')
+        .set('Authorization', user.token)
+        .send(favoriteDish);
+
       // remove this line, here to not have lint error:
       user.token;
-    
-      // expect(response.status).toBe(200);
-      // expect(response.body).toEqual(?);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual({
+        userId: user.id,
+        ...favoriteDish
+      });
       
     });
 
