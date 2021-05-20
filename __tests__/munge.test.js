@@ -5,11 +5,9 @@ describe('API Data Munging', () => {
 
   const expectedFavorites = [
     {
-      name: 'fake dish',
-      id: expect.any(Number),
-      thumbnailUrl: 'string',
-      numServings: '2',
-      userId: 1
+      name: 'Tomato Shorba',
+      thumbnail_url: 'https://img.buzzfeed.com/tasty-app-user-assets-prod-us-east-1/recipes/89513629797746a39d5e6d688a87d7d9.png',
+      num_servings: 4,
     }
   ];
 
