@@ -17,7 +17,7 @@ async function run() {
         hash VARCHAR(512) NOT NULL
       );
     
-      CREATE TABLE favorites (
+      CREATE TABLE recipes (
         id SERIAL PRIMARY KEY NOT NULL,
         name VARCHAR(512) NOT NULL,
         thumbnail_url VARCHAR(128) NOT NULL,
