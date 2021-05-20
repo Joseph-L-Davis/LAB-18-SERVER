@@ -9,7 +9,7 @@ async function run() {
     
     await client.query(`
       DROP TABLE IF EXISTS users CASCADE;
-      DROP TABLE IF EXISTS favorites;
+      DROP TABLE IF EXISTS recipes;
     `);
 
     console.log('drop tables complete');
