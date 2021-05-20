@@ -1,5 +1,5 @@
 import favorites from '../data/favorites.js';
-import { formatFavorites } from '../lib/munge-utils';
+import { formatRecipes } from '../lib/munge-utils';
 
 describe('API Data Munging', () => {
 
@@ -17,7 +17,7 @@ describe('API Data Munging', () => {
     // movieData is imported from file
 
     // act 
-    const output = formatFavorites(favorites);
+    const output = formatRecipes(favorites);
 
     // assert
     expect(output).toEqual(expectedFavorites);
