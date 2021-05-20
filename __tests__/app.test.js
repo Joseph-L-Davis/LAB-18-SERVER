@@ -6,7 +6,7 @@ import { execSync } from 'child_process';
 const request = supertest(app);
 
 let favoriteDish = {
-  name: 'fake dish',
+  name: 'Tomato Shorba',
   id: expect.any(Number),
   thumbnailUrl: 'string',
   numServings: '2',
@@ -19,7 +19,7 @@ describe('API Routes', () => {
     return client.end();
   });
 
-  describe('/api/dishes', () => {
+  describe('/api/favorites', () => {
     let user;
 
     beforeAll(async () => {
@@ -57,6 +57,30 @@ describe('API Routes', () => {
         ...favoriteDish
       });
       
+    });
+
+    it.only('GET my /api/me/favorites only returns my favorites', async () => {
+      // this is setup so that there is a favorite belong to someone else in the db
+      const otherResponse = await request
+        .post('/api/favorites')
+        .set('Authorization', user.token)
+        .send({
+          name: 'booger soup',
+          thumbnailUrl: 'string',
+          numServings: '2'
+        });
+      console.log(otherResponse.body);
+      expect(otherResponse.status).toBe(200);
+      const otherFavorite = otherResponse.body;
+
+      // we are testing this
+      const response = await request.get('/api/me/favorites')
+        .set('Authorization', user.token);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(expect.arrayContaining([otherFavorite]));
+
+
     });
 
   });
