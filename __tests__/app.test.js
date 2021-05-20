@@ -7,7 +7,7 @@ const request = supertest(app);
 
 let favoriteDish = {
   name: 'Tomato Shorba',
-  id: expect.any(Number),
+  id: 1,
   thumbnailUrl: 'string',
   numServings: '2',
   userId: 1
@@ -59,7 +59,7 @@ describe('API Routes', () => {
       
     });
 
-    it.only('GET my /api/me/favorites only returns my favorites', async () => {
+    it.skip('GET my /api/me/favorites only returns my favorites', async () => {
       // this is setup so that there is a favorite belong to someone else in the db
       const otherResponse = await request
         .post('/api/favorites')
@@ -83,5 +83,21 @@ describe('API Routes', () => {
 
     });
 
+    it('DELETE favorite to /api/favorites/:id', async () => {
+      
+      const response = await request
+        .delete(`/api/favorites/${favoriteDish.id}`)
+        .set('Authorization', user.token)
+        .send(favoriteDish);
+
+      expect(response.status).toBe(200);
+      expect(response.body).toEqual(favoriteDish);
+      
+    });
+
+
+
   });
+
+
 });
