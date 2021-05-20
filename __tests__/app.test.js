@@ -69,7 +69,6 @@ describe('API Routes', () => {
           thumbnailUrl: 'string',
           numServings: '2'
         });
-      console.log(otherResponse.body);
       expect(otherResponse.status).toBe(200);
       const otherFavorite = otherResponse.body;
 
