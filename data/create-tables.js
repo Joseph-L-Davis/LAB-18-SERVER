@@ -19,9 +19,9 @@ async function run() {
     
       CREATE TABLE favorites (
         id SERIAL PRIMARY KEY NOT NULL,
-        name VARCHAR(512) NOT NULL,
-        thumbnail_url VARCHAR(128) NOT NULL,
-        num_servings VARCHAR(1024) NOT NULL,
+        name TEXT NOT NULL,
+        thumbnail_url TEXT NOT NULL,
+        num_servings TEXT NOT NULL,
         user_id INTEGER NOT NULL REFERENCES users(id)
       );
     `);
