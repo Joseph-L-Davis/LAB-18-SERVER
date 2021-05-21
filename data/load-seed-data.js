@@ -26,7 +26,7 @@ async function run() {
     await Promise.all(
       recipes.map(recipe => {
         return client.query(`
-        INSERT INTO recipes (name, thumbnail_url, num_servings, user_id)
+        INSERT INTO favorites (name, thumbnail_url, num_servings, user_id)
         VALUES ($1, $2, $3, $4)
         `,
         [recipe.name, recipe.thumbnail_url, recipe.num_servings, user.id]);
