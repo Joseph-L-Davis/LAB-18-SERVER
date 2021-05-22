@@ -2,8 +2,9 @@
 import client from '../lib/client.js';
 // import our seed data:
 import users from './users.js';
-import recipes from './recipes.js';
-
+import unmungedData from './recipes.json';
+import { formatRecipes } from '../lib/munge-utils.js';
+const recipes = formatRecipes(unmungedData);
 run();
 
 async function run() {
