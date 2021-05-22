@@ -8,8 +8,8 @@ const request = supertest(app);
 let favoriteDish = {
   name: 'Tomato Shorba',
   id: 1,
-  thumbnailUrl: 'string',
-  numServings: '2',
+  thumbnail_url: 'string',
+  num_servings: '2',
   userId: 1
 };
 
@@ -59,15 +59,15 @@ describe('API Routes', () => {
       
     });
 
-    it.skip('GET my /api/me/favorites only returns my favorites', async () => {
+    it('GET my /api/me/favorites only returns my favorites', async () => {
       // this is setup so that there is a favorite belong to someone else in the db
       const otherResponse = await request
         .post('/api/favorites')
         .set('Authorization', user.token)
         .send({
           name: 'booger soup',
-          thumbnailUrl: 'string',
-          numServings: '2'
+          thumbnail_url: 'string',
+          num_servings: '2'
         });
       expect(otherResponse.status).toBe(200);
       const otherFavorite = otherResponse.body;
