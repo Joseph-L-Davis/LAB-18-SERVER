@@ -1,4 +1,4 @@
-import recipes from '../data/recipes.json';
+import recipes from './recipesJson.json';
 import { formatRecipes } from '../lib/munge-utils';
 
 describe('API Data Munging', () => {
